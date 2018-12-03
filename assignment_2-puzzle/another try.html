@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<title>BMI Calculator</title>
+
+<script type="text/javascript">
+    function computeBMI() {
+    // user inputs
+      var height = Number(document.getElementById("height").value);
+      var heightunits = document.getElementById("heightunits").value;
+      var weight = Number(document.getElementById("weight").value);
+      var weightunits = document.getElementById("weightunits").value;
+
+    //Convert all units to metric
+      if (heightunits == "inches") height /= 39.3700787;
+      if (weightunits == "lb") weight /= 2.20462;
+
+    //Perform calculation
+    //var BMI = weight /Math.pow(height, 2)*10000;
+      var BMI = Math.round(weight / Math.pow(height, 2) * 10000);
+    //Display result of calculation
+      document.getElementById("output").innerText = Math.round(BMI * 100) / 100;
+
+      var output = Math.round(BMI * 100) / 100
+          if (output < 18.5)
+          document.getElementById("comment").innerText = "Underweight";
+          else if (output >= 18.5 && output <= 25)
+          document.getElementById("comment").innerText = "Normal";
+          else if (output >= 25 && output <= 30)
+          document.getElementById("comment").innerText = "Obese";
+          else if (output > 30)
+          document.getElementById("comment").innerText = "Overweight";
+    // document.getElementById("answer").value = output;
+      }
+
+ </script>
+</head>
+
+<body>
+  <div class="container">
+      <h2>BMI Calculator</h2>
+      <h3>Do you know what is BMI?</h3><br>
+
+  <div class="card" style="width:25rem;">
+    <div class="card-body">
+      <h5 class="card-title">About BMI</h5>
+      <p class="card-text">身体质量指数 (Body Mass Index, 简称BMI),
+      亦称克托莱指数, 是目前国际上常用的衡量人体胖瘦程度以及是否健康的一个标准。
+        <p class="text-danger">BMI 值超标，意味着你必须减肥了。</p>
+      </p>
+      <a href="https://www.medicalnewstoday.com/info/obesity/what-is-bmi.php">Learn more</a>
+    </div>
+  </div>
+</div>
+<br>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">BMI index</th>
+          <th scope="col">Indication</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">level one</th>
+          <td> <18.5 </td>
+          <td> Underweight </td>
+        </tr>
+        <tr>
+          <th scope="row">level two</th>
+          <td> 18.5 ~ 25 </td>
+          <td> Normal </td>
+        </tr>
+        <tr>
+          <th scope="row">level three</th>
+          <td> 25 ~ 30 </td>
+          <td> Obese </td>
+        </tr>
+        <tr>
+          <th scope="row">level four</th>
+          <td> >30 </td>
+          <td> Overweight </td>
+        </tr>
+      </tbody>
+      </table>
+  </div>
+
+  <div class="mx-auto" style="width: 500px;">
+    <p>Enter your height: <input type="text" id="height"/>
+      <select type="multiple" id="heightunits">
+        <option value="metres" selected="selected">metres</option>
+        <option value="inches">inches</option>
+      </select></p>
+    <p>Enter your weight: <input type="text" id="weight"/>
+        <select type="multiple" id="weightunits">
+          <option value="kg" selected="selected">kilograms</option>
+          <option value="lb">pounds</option>
+        </select></p>
+    <input class="btn btn-outline-success" value="Compute Your BMI" onclick="computeBMI();"></button>
+  </div>
+<br>
+  <div class="container">
+    <div class="card" style="width:25rem;">
+      <div class="card-body">
+      <p class="card-text">Your BMI is: <span id="output"></span></p>
+      <p class="card-text">This means you are: <span id="comment"></span></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

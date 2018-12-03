@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Basic Profiles - 15 Famous WTA Tennis Players</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+        <table id="table1" width="100%" class=" table table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Rank</th>
+              <th>Nationality</th>
+              <th>Birthday</th>
+            </tr>
+          </thead>
+        </table>
+    </div>
+
+
+  </body>
+
+  </html>
+
+  <script>
+  $(document).ready(function(){
+    $.getJSON("json/profile.json", function(data){
+      var table1_items = '';
+      each(data,function(key,value){
+        table1_items += '<tr>';
+        table1_items += '<td>'+value.Name+'</td>';
+        table1_items += '<td>'+value.Rank+'</td>';
+        table1_items += '<td>'+value.Nationality+'</td>';
+        table1_items += '<td>'+value.Birthday+'</td>';
+        table1_items += '</tr>';
+      })
+      $('table1_items').append(table1);
+    });
+  });
+  </script>
